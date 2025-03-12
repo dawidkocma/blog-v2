@@ -1,0 +1,286 @@
+<!-- Admin Dashboard -->
+<div class="admin-panel bg-gray-50 dark:bg-gray-900 min-h-screen">
+  <!-- Admin Header -->
+  <div class="glass-card mx-4 mt-4 p-4">
+    <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+      <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+      <div class="flex mt-4 md:mt-0 space-x-4">
+        <a href="/admin/posts/create" class="btn btn-primary">
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            New Post
+          </span>
+        </a>
+        <a href="/admin/projects/create" class="btn btn-secondary">
+          <span class="flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            New Project
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main Content -->
+  <div class="container mx-auto px-4 py-6">
+    <!-- Stats Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+      <!-- Posts Stats -->
+      <div class="glass-card p-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-lg font-semibold">Blog Posts</h3>
+            <p class="text-3xl font-bold mt-2"><%= stats.totalPosts %></p>
+          </div>
+          <div class="p-4 bg-blue-100 dark:bg-blue-900/50 rounded-full">
+            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="flex justify-between mt-4 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">Drafts: <%= stats.draftPosts %></span>
+          <span class="text-primary-600 dark:text-primary-400">
+            <a href="/admin/posts" class="flex items-center hover:underline">
+              Manage
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </div>
+      
+      <!-- Projects Stats -->
+      <div class="glass-card p-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-lg font-semibold">Projects</h3>
+            <p class="text-3xl font-bold mt-2"><%= stats.totalProjects %></p>
+          </div>
+          <div class="p-4 bg-green-100 dark:bg-green-900/50 rounded-full">
+            <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="flex justify-between mt-4 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">Featured: 
+            <%= stats.featuredProjects || 0 %>
+          </span>
+          <span class="text-primary-600 dark:text-primary-400">
+            <a href="/admin/projects" class="flex items-center hover:underline">
+              Manage
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </div>
+      
+      <!-- Comments Stats -->
+      <div class="glass-card p-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-lg font-semibold">Comments</h3>
+            <p class="text-3xl font-bold mt-2"><%= stats.totalComments %></p>
+          </div>
+          <div class="p-4 bg-yellow-100 dark:bg-yellow-900/50 rounded-full">
+            <svg class="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="flex justify-between mt-4 text-sm">
+          <% if (stats.pendingComments > 0) { %>
+            <span class="text-yellow-600 dark:text-yellow-400">
+              Pending: <%= stats.pendingComments %>
+            </span>
+          <% } else { %>
+            <span class="text-gray-600 dark:text-gray-400">All moderated</span>
+          <% } %>
+          <span class="text-primary-600 dark:text-primary-400">
+            <a href="/admin/comments" class="flex items-center hover:underline">
+              Manage
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </div>
+      
+      <!-- Users Stats -->
+      <div class="glass-card p-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <h3 class="text-lg font-semibold">Users</h3>
+            <p class="text-3xl font-bold mt-2"><%= stats.totalUsers %></p>
+          </div>
+          <div class="p-4 bg-purple-100 dark:bg-purple-900/50 rounded-full">
+            <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="flex justify-between mt-4 text-sm">
+          <span class="text-gray-600 dark:text-gray-400">Admins: 
+            <%= stats.adminUsers || 1 %>
+          </span>
+          <span class="text-primary-600 dark:text-primary-400">
+            <a href="/admin/users" class="flex items-center hover:underline">
+              Manage
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- Recent Posts -->
+      <div class="glass-card p-6">
+        <h3 class="text-xl font-bold mb-4">Recent Posts</h3>
+        
+        <div class="overflow-hidden">
+          <% if (recentPosts && recentPosts.length > 0) { %>
+            <div class="overflow-x-auto">
+              <table class="min-w-full">
+                <thead>
+                  <tr class="border-b border-gray-200 dark:border-gray-800">
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-400">Title</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-400">Status</th>
+                    <th class="px-4 py-3 text-left text-sm font-medium text-gray-600 dark:text-gray-400">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% recentPosts.forEach(post => { %>
+                    <tr class="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+                      <td class="px-4 py-3 text-sm">
+                        <a href="/admin/posts/edit/<%= post.id %>" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">
+                          <%= post.title %>
+                        </a>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        <% if (post.status === 'published') { %>
+                          <span class="px-2 py-1 text-xs rounded-full bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-400">
+                            Published
+                          </span>
+                        <% } else if (post.status === 'draft') { %>
+                          <span class="px-2 py-1 text-xs rounded-full bg-yellow-100 dark:bg-yellow-900/50 text-yellow-800 dark:text-yellow-400">
+                            Draft
+                          </span>
+                        <% } else { %>
+                          <span class="px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-400">
+                            Archived
+                          </span>
+                        <% } %>
+                      </td>
+                      <td class="px-4 py-3 text-sm text-gray-600 dark:text-gray-400">
+                        <%= new Date(post.createdAt).toLocaleDateString() %>
+                      </td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+            </div>
+          <% } else { %>
+            <p class="text-gray-600 dark:text-gray-400">No posts available yet.</p>
+          <% } %>
+        </div>
+        
+        <div class="mt-4 text-right">
+          <a href="/admin/posts" class="text-primary-600 dark:text-primary-400 text-sm hover:underline flex items-center justify-end">
+            View All Posts
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Recent Comments -->
+      <div class="glass-card p-6">
+        <h3 class="text-xl font-bold mb-4">Recent Comments</h3>
+        
+        <div class="space-y-4">
+          <% if (recentComments && recentComments.length > 0) { %>
+            <% recentComments.forEach(comment => { %>
+              <div class="border-b border-gray-100 dark:border-gray-800 pb-4 last:border-b-0 last:pb-0">
+                <div class="flex items-start">
+                  <% if (comment.user && comment.user.avatar) { %>
+                    <img src="<%= comment.user.avatar %>" alt="<%= comment.user.username %>" class="w-8 h-8 rounded-full mr-3">
+                  <% } else { %>
+                    <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
+                      <span class="text-primary-700 dark:text-primary-300 font-bold">
+                        <%= comment.user ? comment.user.username.charAt(0).toUpperCase() : 'U' %>
+                      </span>
+                    </div>
+                  <% } %>
+                  <div class="flex-1">
+                    <div class="flex justify-between">
+                      <p class="font-medium">
+                        <%= comment.user ? comment.user.username : 'Unknown User' %>
+                        <span class="text-gray-600 dark:text-gray-400 text-sm font-normal ml-2">
+                          on <a href="/blog/post/<%= comment.post.slug %>" class="hover:underline"><%= comment.post.title %></a>
+                        </span>
+                      </p>
+                      <span class="text-xs text-gray-500 dark:text-gray-500">
+                        <%= new Date(comment.createdAt).toLocaleDateString() %>
+                      </span>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1 text-sm line-clamp-2">
+                      <%= comment.content %>
+                    </p>
+                    <div class="mt-2 flex space-x-3">
+                      <% if (comment.status === 'pending') { %>
+                        <button 
+                          class="text-xs text-green-600 dark:text-green-400 hover:underline moderate-button" 
+                          data-id="<%= comment.id %>" 
+                          data-action="approve"
+                        >
+                          Approve
+                        </button>
+                        <button 
+                          class="text-xs text-red-600 dark:text-red-400 hover:underline moderate-button" 
+                          data-id="<%= comment.id %>" 
+                          data-action="reject"
+                        >
+                          Reject
+                        </button>
+                      <% } else { %>
+                        <span class="text-xs px-2 py-0.5 rounded-full 
+                          <%= comment.status === 'approved' ? 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-400' : 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-400' %>
+                        ">
+                          <%= comment.status.charAt(0).toUpperCase() + comment.status.slice(1) %>
+                        </span>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          <% } else { %>
+            <p class="text-gray-600 dark:text-gray-400">No comments available yet.</p>
+          <% } %>
+        </div>
+        
+        <div class="mt-4 text-right">
+          <a href="/admin/comments" class="text-primary-600 dark:text-primary-400 text-sm hover:underline flex items-center justify-end">
+            View All Comments
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,271 @@
+<!-- Hero Section -->
+<section class="relative overflow-hidden py-16 md:py-24 lg:py-32 bg-gradient-to-br from-white to-gray-100 dark:from-dark-bg dark:to-gray-900">
+  <div class="container mx-auto px-4 flex flex-col lg:flex-row items-center">
+    <!-- Hero Content -->
+    <div class="flex-1 lg:pr-12 mb-12 lg:mb-0 fade-in" style="animation-delay: 0.1s;">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight">
+        Hi, I'm <span class="text-primary-600 dark:text-primary-400">Dawid Kocma</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8">
+        Software engineer and web developer with a passion for creating elegant, user-friendly applications.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="/projects" class="btn btn-primary">
+          View My Work
+        </a>
+        <a href="/contact" class="btn btn-secondary">
+          Get In Touch
+        </a>
+      </div>
+    </div>
+    
+    <!-- Hero Image -->
+    <div class="flex-1 fade-in" style="animation-delay: 0.3s;">
+      <div class="relative mx-auto max-w-md lg:max-w-full">
+        <div class="glass-card rounded-2xl overflow-hidden shadow-2xl">
+          <!-- Replace with your actual profile image -->
+          <img 
+            src="/images/profile-hero.jpg" 
+            alt="Dawid Kocma" 
+            class="w-full h-auto"
+            onerror="this.src='/images/profile-placeholder.jpg'"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Decorative Elements -->
+  <div class="hidden lg:block absolute top-1/4 left-10 w-16 h-16 rounded-full bg-primary-500/20 dark:bg-primary-500/10 blur-xl parallax" data-speed="0.1"></div>
+  <div class="hidden lg:block absolute bottom-1/4 right-10 w-24 h-24 rounded-full bg-primary-500/20 dark:bg-primary-500/10 blur-xl parallax" data-speed="-0.1"></div>
+  <div class="hidden lg:block absolute top-1/2 left-1/3 w-12 h-12 rounded-full bg-primary-500/20 dark:bg-primary-500/10 blur-xl parallax" data-speed="0.05"></div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="py-16 md:py-24">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Featured Projects</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Check out some of my recent work
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% if (featuredProjects && featuredProjects.length > 0) { %>
+        <% featuredProjects.forEach((project, index) => { %>
+          <div class="glass-card overflow-hidden transition-all duration-300 hover:shadow-xl slide-up" style="animation-delay: <%= 0.1 + (index * 0.1) %>s;">
+            <div class="relative aspect-video overflow-hidden">
+              <% if (project.coverImage) { %>
+                <img 
+                  src="<%= project.coverImage %>" 
+                  alt="<%= project.title %>" 
+                  class="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+                >
+              <% } else { %>
+                <div class="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                  <span class="text-gray-400 dark:text-gray-600">No image</span>
+                </div>
+              <% } %>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2"><%= project.title %></h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4"><%= project.shortDescription %></p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <% project.technologies.slice(0, 3).forEach(tech => { %>
+                  <span class="inline-block px-2 py-1 text-xs rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+                    <%= tech %>
+                  </span>
+                <% }) %>
+                <% if (project.technologies.length > 3) { %>
+                  <span class="inline-block px-2 py-1 text-xs rounded-full bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+                    +<%= project.technologies.length - 3 %> more
+                  </span>
+                <% } %>
+              </div>
+              <a href="/projects/<%= project.slug %>" class="text-primary-600 dark:text-primary-400 font-medium inline-flex items-center">
+                View Project
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="md:col-span-2 lg:col-span-3 text-center">
+          <p class="text-gray-600 dark:text-gray-400">No featured projects available yet.</p>
+        </div>
+      <% } %>
+    </div>
+    
+    <div class="text-center mt-12">
+      <a href="/projects" class="btn btn-primary">
+        View All Projects
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section class="py-16 md:py-24 bg-gray-50 dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">My Skills</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Technologies and tools I work with
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      <!-- Frontend -->
+      <div class="glass-card p-6 text-center slide-up" style="animation-delay: 0.1s;">
+        <div class="inline-block p-4 rounded-full bg-blue-100 dark:bg-blue-900 mb-4">
+          <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Frontend</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          React, Vue, Angular, HTML, CSS, Tailwind CSS, JavaScript, TypeScript
+        </p>
+      </div>
+      
+      <!-- Backend -->
+      <div class="glass-card p-6 text-center slide-up" style="animation-delay: 0.2s;">
+        <div class="inline-block p-4 rounded-full bg-green-100 dark:bg-green-900 mb-4">
+          <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Backend</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Node.js, Express, Django, Flask, PHP, MongoDB, PostgreSQL, MySQL
+        </p>
+      </div>
+      
+      <!-- DevOps -->
+      <div class="glass-card p-6 text-center slide-up" style="animation-delay: 0.3s;">
+        <div class="inline-block p-4 rounded-full bg-purple-100 dark:bg-purple-900 mb-4">
+          <svg class="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">DevOps</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          Docker, Kubernetes, CI/CD, AWS, Google Cloud, Heroku, Git
+        </p>
+      </div>
+      
+      <!-- Tools -->
+      <div class="glass-card p-6 text-center slide-up" style="animation-delay: 0.4s;">
+        <div class="inline-block p-4 rounded-full bg-yellow-100 dark:bg-yellow-900 mb-4">
+          <svg class="w-8 h-8 text-yellow-600 dark:text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-2">Tools</h3>
+        <p class="text-gray-600 dark:text-gray-400">
+          VS Code, Webpack, Vite, Figma, Photoshop, Jest, Cypress
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Latest Blog Posts Section -->
+<section class="py-16 md:py-24">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Latest Blog Posts</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        Thoughts, tutorials, and insights
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% if (featuredPosts && featuredPosts.length > 0) { %>
+        <% featuredPosts.forEach((post, index) => { %>
+          <div class="glass-card overflow-hidden slide-up" style="animation-delay: <%= 0.1 + (index * 0.1) %>s;">
+            <div class="relative aspect-video overflow-hidden">
+              <% if (post.coverImage) { %>
+                <img 
+                  src="<%= post.coverImage %>" 
+                  alt="<%= post.title %>" 
+                  class="w-full h-full object-cover transition-all duration-500 hover:scale-105"
+                >
+              <% } else { %>
+                <div class="w-full h-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                  <span class="text-gray-400 dark:text-gray-600">No image</span>
+                </div>
+              <% } %>
+              
+              <% if (post.tags && post.tags.length > 0) { %>
+                <div class="absolute top-4 left-4">
+                  <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-primary-600 text-white">
+                    <%= post.tags[0] %>
+                  </span>
+                </div>
+              <% } %>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2"><%= post.title %></h3>
+              <p class="text-gray-600 dark:text-gray-400 mb-4"><%= post.excerpt %></p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                  <% if (post.author && post.author.avatar) { %>
+                    <img src="<%= post.author.avatar %>" alt="<%= post.author.username %>" class="w-8 h-8 rounded-full mr-2">
+                  <% } else { %>
+                    <div class="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-2">
+                      <span class="text-primary-700 dark:text-primary-300 font-bold">
+                        <%= post.author ? post.author.username.charAt(0).toUpperCase() : 'U' %>
+                      </span>
+                    </div>
+                  <% } %>
+                  <span class="text-sm text-gray-600 dark:text-gray-400">
+                    <%= post.author ? post.author.username : 'Unknown' %>
+                  </span>
+                </div>
+                <span class="text-sm text-gray-600 dark:text-gray-400">
+                  <%= new Date(post.publishedAt || post.createdAt).toLocaleDateString() %>
+                </span>
+              </div>
+              <a href="/blog/post/<%= post.slug %>" class="mt-4 text-primary-600 dark:text-primary-400 font-medium inline-flex items-center">
+                Read More
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <div class="md:col-span-2 lg:col-span-3 text-center">
+          <p class="text-gray-600 dark:text-gray-400">No blog posts available yet.</p>
+        </div>
+      <% } %>
+    </div>
+    
+    <div class="text-center mt-12">
+      <a href="/blog" class="btn btn-primary">
+        View All Posts
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="py-16 md:py-24 bg-primary-50 dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <div class="glass-card p-8 md:p-12 text-center max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Let's Work Together</h2>
+      <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto">
+        Have a project in mind or want to collaborate? I'd love to hear from you!
+      </p>
+      <a href="/contact" class="btn btn-primary">
+        Get In Touch
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<!-- 500 Error Page -->
+<div class="h-screen flex flex-col items-center justify-center px-4">
+  <div class="glass-card max-w-md p-8 md:p-12 text-center">
+    <h1 class="text-8xl md:text-9xl font-display font-bold text-primary-600 dark:text-primary-400 mb-4">500</h1>
+    <h2 class="text-3xl font-bold mb-6">Server Error</h2>
+    <p class="text-xl text-gray-600 dark:text-gray-400 mb-8">
+      Something went wrong on our servers. Please try again later.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="/" class="btn btn-primary">
+        Return Home
+      </a>
+      <button onclick="history.back()" class="btn btn-secondary">
+        Go Back
+      </button>
+    </div>
+    
+    <% if (process.env.NODE_ENV !== 'production' && typeof error !== 'undefined') { %>
+      <div class="mt-8 p-4 bg-red-50 dark:bg-red-900/30 rounded-lg text-left overflow-x-auto">
+        <p class="text-red-800 dark:text-red-400 font-mono text-sm"><%= error.stack %></p>
+      </div>
+    <% } %>
+  </div>
+</div>
